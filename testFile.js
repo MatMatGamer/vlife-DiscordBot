@@ -17,14 +17,15 @@ client.on("ready", async (client) => {
   console.log(`${client.user.tag} est prêt !`);
 });
 client.on("interactionCreate", (interaction) => {
+  if (interaction.isModalSubmit()) {
+    interaction.fields.getTextInputValue("");
+  }
   if (interaction.isButton()) {
     if (interaction.customId == "validateEntry") {
       var délitsR = interaction.message.embeds[0].fields
         .filter((field) => field.name == "Délits Routiers:")
         .map((field) => field.value);
     }
-
-    interaction.showModal();
   }
   if (!interaction.isSelectMenu()) return;
   if (interaction.customId === "délitsR") {
