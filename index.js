@@ -56,22 +56,6 @@ const loadCommands = async (dir = "./commands/") => {
   );
 };
 
-clientCmds.getCommands({ guildID: "970247031861948416" }).then((cmds) => {
-  cmds.forEach(async (cmd) => {
-    if (client.commands.get(cmd.name).perms) {
-      client.api
-        .applications("1001622361713426505")
-        .guilds("970247031861948416")
-        .commands(cmd.id)
-        .permissions.put({
-          data: {
-            permissions: client.commands.get(cmd.name).perms,
-          },
-        });
-    }
-  });
-});
-
 const loadEvents = (dir = "./events//") => {
   fs.readdirSync(dir).forEach((dirs) => {
     const events = fs

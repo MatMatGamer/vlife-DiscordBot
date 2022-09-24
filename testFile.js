@@ -23,6 +23,8 @@ client.on("interactionCreate", (interaction) => {
         .filter((field) => field.name == "Délits Routiers:")
         .map((field) => field.value);
     }
+
+    interaction.showModal();
   }
   if (!interaction.isSelectMenu()) return;
   if (interaction.customId === "délitsR") {
