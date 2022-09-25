@@ -1,9 +1,3 @@
-const {
-  Modal,
-  TextInputComponent,
-  SelectMenuComponent,
-  showModal,
-} = require("discord-modals");
 const { MessageEmbed } = require("discord.js");
 
 module.exports = async (client, interaction) => {
@@ -17,6 +11,7 @@ module.exports = async (client, interaction) => {
       var plainte = {
         name: interaction.fields.getTextInputValue("textinput-name"),
         grade: interaction.fields.getTextInputValue("textinput-grade"),
+        steamid: interaction.fields.getTextInputValue("textinput-steamid"),
         raison: interaction.fields.getTextInputValue("textinput-raison"),
         preuve: interaction.fields.getTextInputValue("textinput-preuve"),
       };
@@ -26,50 +21,16 @@ module.exports = async (client, interaction) => {
         .setDescription(`Plainte police faite par <@${interaction.user.id}>`)
         .addField("Nom :", `${plainte.name}`)
         .addField("Grade :", `${plainte.grade}`)
+        .addField("SteamID :", `${plainte.steamid}`)
         .addField("Raison :", `${plainte.raison}`)
         .addField("Preuve :", `${plainte.preuve}`)
         .setFooter("RPD Vlife")
-        .setColor("DARK_RED")
+        .setColor("RED")
         .setTimestamp(new Date());
 
       client.channels
         .fetch("1023292844389183558")
         .then((c) => c.send({ embeds: [embed] }));
-    }
-  }
-  if (interaction.isButton()) {
-    if (interaction.customId == "plainte") {
-      var form = new Modal()
-        .setCustomId("plainteForm")
-        .setTitle("Plainte Police")
-        .addComponents(
-          new TextInputComponent()
-            .setCustomId("textinput-name")
-            .setLabel("Nom De La Personne")
-            .setStyle("SHORT")
-            .setPlaceholder("Exemple: Eric Durand")
-            .setRequired(true),
-          new TextInputComponent()
-            .setCustomId("textinput-grade")
-            .setLabel("Grade De La Personne")
-            .setStyle("SHORT")
-            .setPlaceholder("Exemple: Chief")
-            .setRequired(true),
-          new TextInputComponent()
-            .setCustomId("textinput-raison")
-            .setLabel("Raison de la plainte")
-            .setStyle("LONG")
-            .setPlaceholder("Détaillez au maximum")
-            .setRequired(true),
-          new TextInputComponent()
-            .setCustomId("textinput-preuve")
-            .setLabel("Preuves (Rec sur youtube)")
-            .setStyle("SHORT")
-            .setPlaceholder("Liens de la vidéo en non repertorié")
-            .setRequired(true)
-        );
-
-      await showModal(form, { client: client, interaction: interaction });
     }
   }
 };
