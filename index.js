@@ -21,7 +21,8 @@ const clientCmds = new ClientCommands.Client(
 const rest = new REST({ version: "9" }).setToken(process.env.TOKEN);
 client.commands = new Collection();
 const loadCommands = async (dir = "./commands/") => {
-  const commandsData = [];
+  const commandsDataALL = [];
+  const commandsDataRPD = [];
   fs.readdirSync(dir).forEach((dirs) => {
     const commands = fs
       .readdirSync(`${dir}/${dirs}/`)
@@ -30,7 +31,12 @@ const loadCommands = async (dir = "./commands/") => {
       const getFilename = require(`${dir}/${dirs}/${file}`);
       client.commands.set(getFilename.help.name, getFilename);
 
-      commandsData.push(getFilename.cmd);
+      if (getFilename.serv && getFilename.serv == "RPD") {
+        commandsDataRPD.push(getFilename.cmd);
+      } else {
+        commandsDataALL.push(getFilename.cmd);
+        commandsDataRPD.push(getFilename.cmd);
+      }
 
       console.log(`Commande chargée | ${getFilename.help.name}`);
     }
@@ -42,7 +48,7 @@ const loadCommands = async (dir = "./commands/") => {
       "970247031861948416"
     ),
     {
-      body: commandsData,
+      body: commandsDataALL,
     }
   );
   await rest.put(
@@ -51,7 +57,7 @@ const loadCommands = async (dir = "./commands/") => {
       "909391088614256650"
     ),
     {
-      body: commandsData,
+      body: commandsDataRPD,
     }
   );
 };
