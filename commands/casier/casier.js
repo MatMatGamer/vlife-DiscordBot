@@ -374,18 +374,20 @@ module.exports = {
             true
           );
         var casiers = fs.readdirSync("./casiers");
-        embed2.addField(
-          "Posséde déjà un casier:",
-          casiers.includes(
-            `${interaction.options
-              .getString("nom")
-              .toLowerCase()}_${interaction.options
-              .getString("prenom")
-              .toLowerCase()}.json`
+        embed2
+          .addField(
+            "Posséde déjà un casier:",
+            casiers.includes(
+              `${interaction.options
+                .getString("nom")
+                .toLowerCase()}_${interaction.options
+                .getString("prenom")
+                .toLowerCase()}.json`
+            )
+              ? "<:oui:994536507840933978> Oui"
+              : "<:non:1003661150715650098> Non"
           )
-            ? "<:oui:994536507840933978> Oui"
-            : "<:non:1003661150715650098> Non"
-        );
+          .addField("Sécurité Informatique n°", `${interaction.user.id}`);
         interaction.reply({
           embeds: [embed, embed2],
           components: [delitsR, armes, braquage, divers, buttons],

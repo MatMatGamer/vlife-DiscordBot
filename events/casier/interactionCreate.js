@@ -52,6 +52,14 @@ module.exports = async (client, interaction) => {
       interaction.customId.startsWith("armeLeg+") ||
       interaction.customId.startsWith("armeLeg-")
     ) {
+      var sécu = new MessageEmbed(interaction.message.embeds[1]).fields
+        .filter((field) => field.name == "Sécurité Informatique n°")
+        .map((field) => field.value)[0];
+      if (sécu != interaction.user.id)
+        return interaction.reply({
+          content: "La sécurité informatique vous empêche de faire cela !",
+          ephemeral: true,
+        });
       var embed = new MessageEmbed(interaction.message.embeds[0]);
       var nb = parseInt(
         embed.fields
@@ -72,6 +80,14 @@ module.exports = async (client, interaction) => {
       interaction.customId.startsWith("armeLourde+") ||
       interaction.customId.startsWith("armeLourde-")
     ) {
+      var sécu = new MessageEmbed(interaction.message.embeds[1]).fields
+        .filter((field) => field.name == "Sécurité Informatique n°")
+        .map((field) => field.value)[0];
+      if (sécu != interaction.user.id)
+        return interaction.reply({
+          content: "La sécurité informatique vous empêche de faire cela !",
+          ephemeral: true,
+        });
       var embed = new MessageEmbed(interaction.message.embeds[0]);
       var nb = parseInt(
         embed.fields
@@ -92,6 +108,14 @@ module.exports = async (client, interaction) => {
       interaction.customId.startsWith("autreDelitR+") ||
       interaction.customId.startsWith("autreDelitR-")
     ) {
+      var sécu = new MessageEmbed(interaction.message.embeds[1]).fields
+        .filter((field) => field.name == "Sécurité Informatique n°")
+        .map((field) => field.value)[0];
+      if (sécu != interaction.user.id)
+        return interaction.reply({
+          content: "La sécurité informatique vous empêche de faire cela !",
+          ephemeral: true,
+        });
       var embed = new MessageEmbed(interaction.message.embeds[0]);
       var nb = parseInt(
         embed.fields
@@ -112,6 +136,14 @@ module.exports = async (client, interaction) => {
       interaction.customId.startsWith("Amende+") ||
       interaction.customId.startsWith("Amende-")
     ) {
+      var sécu = new MessageEmbed(interaction.message.embeds[1]).fields
+        .filter((field) => field.name == "Sécurité Informatique n°")
+        .map((field) => field.value)[0];
+      if (sécu != interaction.user.id)
+        return interaction.reply({
+          content: "La sécurité informatique vous empêche de faire cela !",
+          ephemeral: true,
+        });
       var row = new MessageActionRow(interaction.message.components[0]);
       var row2 = new MessageActionRow(interaction.message.components[1]);
       var embed = new MessageEmbed(interaction.message.embeds[0]);
@@ -213,6 +245,14 @@ module.exports = async (client, interaction) => {
       });
     }
     if (interaction.customId == "validateEntry") {
+      var sécu = new MessageEmbed(interaction.message.embeds[1]).fields
+        .filter((field) => field.name == "Sécurité Informatique n°")
+        .map((field) => field.value)[0];
+      if (sécu != interaction.user.id)
+        return interaction.reply({
+          content: "La sécurité informatique vous empêche de faire cela !",
+          ephemeral: true,
+        });
       var nom = interaction.message.embeds[1].fields[1].value;
       var prenom = interaction.message.embeds[1].fields[0].value;
 
@@ -549,6 +589,14 @@ module.exports = async (client, interaction) => {
         components: [row, row2, buttons],
       });
     } else if (interaction.customId.startsWith("AmendeStatus")) {
+      var sécu = new MessageEmbed(interaction.message.embeds[1]).fields
+        .filter((field) => field.name == "Sécurité Informatique n°")
+        .map((field) => field.value)[0];
+      if (sécu != interaction.user.id)
+        return interaction.reply({
+          content: "La sécurité informatique vous empêche de faire cela !",
+          ephemeral: true,
+        });
       var embed = new MessageEmbed(interaction.message.embeds[2]);
       if (interaction.customId == "AmendeStatusPaye") {
         embed.fields[2].value = "Payé";
@@ -565,6 +613,14 @@ module.exports = async (client, interaction) => {
         ],
       });
     } else if (interaction.customId == "validateEntryAmende") {
+      var sécu = new MessageEmbed(interaction.message.embeds[1]).fields
+        .filter((field) => field.name == "Sécurité Informatique n°")
+        .map((field) => field.value)[0];
+      if (sécu != interaction.user.id)
+        return interaction.reply({
+          content: "La sécurité informatique vous empêche de faire cela !",
+          ephemeral: true,
+        });
       if (
         interaction.message.embeds[2].fields.filter(
           (field) => field.name == "Status:"
@@ -605,6 +661,14 @@ module.exports = async (client, interaction) => {
           (field) => field.name == "Reste à payer:"
         ).length == 0
       ) {
+        var sécu = new MessageEmbed(interaction.message.embeds[1]).fields
+          .filter((field) => field.name == "Sécurité Informatique n°")
+          .map((field) => field.value)[0];
+        if (sécu != interaction.user.id)
+          return interaction.reply({
+            content: "La sécurité informatique vous empêche de faire cela !",
+            ephemeral: true,
+          });
         var amende = parseInt(interaction.message.embeds[2].fields[1].value);
         var row = new MessageActionRow().addComponents(
           new MessageButton()
@@ -858,6 +922,14 @@ module.exports = async (client, interaction) => {
         components: [],
       });
     } else if (interaction.customId == "cancelEntry") {
+      var sécu = new MessageEmbed(interaction.message.embeds[1]).fields
+        .filter((field) => field.name == "Sécurité Informatique n°")
+        .map((field) => field.value)[0];
+      if (sécu != interaction.user.id)
+        return interaction.reply({
+          content: "La sécurité informatique vous empêche de faire cela !",
+          ephemeral: true,
+        });
       interaction.guild.channels
         .fetch(interaction.channelId)
         .then((channel) => {
@@ -869,6 +941,14 @@ module.exports = async (client, interaction) => {
   }
   if (interaction.isSelectMenu()) {
     if (interaction.customId === "délitsR") {
+      var sécu = new MessageEmbed(interaction.message.embeds[1]).fields
+        .filter((field) => field.name == "Sécurité Informatique n°")
+        .map((field) => field.value)[0];
+      if (sécu != interaction.user.id)
+        return interaction.reply({
+          content: "La sécurité informatique vous empêche de faire cela !",
+          ephemeral: true,
+        });
       var delitsR = interaction.values;
       var delitsRText = "";
       delitsR.forEach((delit) => {
@@ -885,6 +965,14 @@ module.exports = async (client, interaction) => {
         embeds: [embed, new MessageEmbed(interaction.message.embeds[1])],
       });
     } else if (interaction.customId === "armes") {
+      var sécu = new MessageEmbed(interaction.message.embeds[1]).fields
+        .filter((field) => field.name == "Sécurité Informatique n°")
+        .map((field) => field.value)[0];
+      if (sécu != interaction.user.id)
+        return interaction.reply({
+          content: "La sécurité informatique vous empêche de faire cela !",
+          ephemeral: true,
+        });
       var armes = interaction.values;
       var armesText = "";
       var meurtreText = "";
@@ -909,6 +997,14 @@ module.exports = async (client, interaction) => {
         embeds: [embed, new MessageEmbed(interaction.message.embeds[1])],
       });
     } else if (interaction.customId == "braquage") {
+      var sécu = new MessageEmbed(interaction.message.embeds[1]).fields
+        .filter((field) => field.name == "Sécurité Informatique n°")
+        .map((field) => field.value)[0];
+      if (sécu != interaction.user.id)
+        return interaction.reply({
+          content: "La sécurité informatique vous empêche de faire cela !",
+          ephemeral: true,
+        });
       var braquage = interaction.values;
       var braquageText = "";
       var POText = "";
@@ -933,6 +1029,14 @@ module.exports = async (client, interaction) => {
         embeds: [embed, new MessageEmbed(interaction.message.embeds[1])],
       });
     } else if (interaction.customId == "divers") {
+      var sécu = new MessageEmbed(interaction.message.embeds[1]).fields
+        .filter((field) => field.name == "Sécurité Informatique n°")
+        .map((field) => field.value)[0];
+      if (sécu != interaction.user.id)
+        return interaction.reply({
+          content: "La sécurité informatique vous empêche de faire cela !",
+          ephemeral: true,
+        });
       var divers = interaction.values;
       var diversText = "";
       var DroguePrinterText = "";

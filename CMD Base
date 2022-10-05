@@ -1,0 +1,33 @@
+const { SlashCommandBuilder } = require("@discordjs/builders");
+const {
+  MessageActionRow,
+  MessageSelectMenu,
+  MessageEmbed,
+  MessageButton,
+} = require("discord.js");
+const {
+  Modal,
+  TextInputComponent,
+  SelectMenuComponent,
+  showModal,
+} = require("discord-modals");
+const fs = require("fs");
+
+const data = {
+  name: "say",
+  description: "Permet de faire une demande de sanction police",
+};
+
+module.exports = {
+  serv: "RPD",
+  help: {
+    name: data.name,
+    description: data.description,
+  },
+  cmd: new SlashCommandBuilder()
+    .setName(data.name)
+    .setDescription(data.description)
+    .setDefaultPermission(false)
+    .toJSON(),
+  run: async (client, interaction) => {},
+};

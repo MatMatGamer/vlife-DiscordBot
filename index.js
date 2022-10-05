@@ -4,7 +4,13 @@ const fs = require("fs");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const ClientCommands = require("discord-slash-commands-client");
-
+const activities = [
+  { name: "Regarde le chief", type: "WATCHING" },
+  { name: "Regarde la police", type: "WATCHING" },
+  { name: "Fais un rapport", type: "PLAYING" },
+  { name: "S'occupe de la paperasse", type: "PLAYING" },
+];
+var activityI = 0;
 require("dotenv").config(); // .env
 const client = new Discord.Client({
   intents: [
@@ -12,7 +18,18 @@ const client = new Discord.Client({
     Discord.Intents.FLAGS.GUILD_INTEGRATIONS,
     Discord.Intents.FLAGS.GUILDS,
   ],
+  presence: {
+    status: "dnd",
+  },
 });
+
+setInterval(() => {
+  client.user.setActivity(activities[activityI]);
+  activityI++;
+  if (activityI > 3) {
+    activityI = 0;
+  }
+}, 15000);
 const clientCmds = new ClientCommands.Client(
   process.env.TOKEN,
   "1001622361713426505"
@@ -38,8 +55,9 @@ const loadCommands = async (dir = "./commands/") => {
         commandsDataRPD.push(getFilename.cmd);
       }
 
-      console.log(`Commande chargée | ${getFilename.help.name}`);
+      console.log(`Commande chargée | ${dirs} | ${getFilename.help.name}`);
     }
+    console.log("\n");
   });
 
   await rest.put(
@@ -61,7 +79,7 @@ const loadCommands = async (dir = "./commands/") => {
     }
   );
 };
-
+console.log("\n");
 const loadEvents = (dir = "./events//") => {
   fs.readdirSync(dir).forEach((dirs) => {
     const events = fs
@@ -71,8 +89,9 @@ const loadEvents = (dir = "./events//") => {
       const evt = require(`${dir}/${dirs}/${event}`);
       const evtName = event.split(".")[0];
       client.on(evtName, evt.bind(null, client));
-      console.log(`Evenement chargé | ${evtName}`);
+      console.log(`Evenement chargé | ${dirs} | ${evtName}`);
     }
+    console.log("\n");
   });
 };
 
