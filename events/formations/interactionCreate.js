@@ -11,6 +11,7 @@ module.exports = async (client, interaction) => {
         nom: interaction.fields.getTextInputValue("forma"),
         date: interaction.fields.getTextInputValue("date"),
         heure: interaction.fields.getTextInputValue("heure"),
+        lieu: interaction.fields.getTextInputValue("lieu"),
         formateurs: `${interaction.user.id}${
           interaction.fields.getTextInputValue("formateurs") != ""
             ? "," + interaction.fields.getTextInputValue("formateurs")
@@ -21,7 +22,7 @@ module.exports = async (client, interaction) => {
       forma.formateurs = forma.formateurs.replace(" ", "").split(",");
       var formateursMess = "";
       forma.formateurs.forEach((m) => {
-        formateursMess += `<@${m}>`;
+        formateursMess += ` <@${m}>`;
       });
 
       var messageFormation = `<@&909391088639410220> **Formation**
@@ -32,7 +33,7 @@ __Les formateurs :__
 __Horaire, Date, et Lieu :__
 > Le ${forma.date}
 > À ${forma.heure}
-> En salle de dispatch
+> Rendez-vous ${forma.lieu}
       
 __Formation délivré :__
 > Badge ${forma.nom}`;
@@ -53,8 +54,8 @@ __Formation délivré :__
         ),
         entityType: "EXTERNAL",
         privacyLevel: "GUILD_ONLY",
-        description: `Formation ${forma.nom} \n\nRendez-vous au poste de police à l'horaire indiqué`,
-        entityMetadata: { location: "Salle de Dispatch" },
+        description: `Formation ${forma.nom} \n\nRendez-vous ${forma.lieu} à l'horaire indiqué`,
+        entityMetadata: { location: `${forma.lieu}` },
         image: "https://temana.fr/wp-content/uploads/formationpro.png",
       });
     }

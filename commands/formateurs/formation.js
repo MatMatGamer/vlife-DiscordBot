@@ -48,13 +48,19 @@ module.exports = {
           .setPlaceholder("Exemple: 01/01/2022"),
         new TextInputComponent()
           .setCustomId("heure")
-          .setLabel("Heure ?")
+          .setLabel("Heure ? (HEURE:MINUTES)")
           .setStyle("SHORT")
           .setRequired(true)
           .setPlaceholder("Exemple: 18h02"),
         new TextInputComponent()
+          .setCustomId("lieu")
+          .setLabel("Lieu de rendez-vous?")
+          .setStyle("SHORT")
+          .setRequired(true)
+          .setPlaceholder("Exemple: Salle de Dispatch ou Radio 1 (Discord)"),
+        new TextInputComponent()
           .setCustomId("formateurs")
-          .setLabel("Formateurs ? (id séparé par des virgules)")
+          .setLabel("Formateurs ? (autre que vous, suivre exemple)")
           .setStyle("SHORT")
           .setRequired(false)
           .setPlaceholder("Exemple: 263723195784364042,394096450444853249")
