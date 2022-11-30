@@ -100,7 +100,7 @@ module.exports = async (client, interaction) => {
 > ${infos.raison}`;
 
         client.channels
-          .fetch("974381611615395840")
+          .fetch("1020799533065707622")
           .then((c) => c.send({ content: message }));
       } else if (
         interaction.fields.getTextInputValue("sanction").toLowerCase() == "map"
@@ -125,7 +125,7 @@ __Cordialement,__
 __L'État Major RPD.__`;
 
         client.channels
-          .fetch("974381611615395840")
+          .fetch("923860195774455818")
           .then((c) => c.send({ content: message }));
       } else {
         interaction.reply({

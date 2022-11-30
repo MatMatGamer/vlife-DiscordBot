@@ -17,8 +17,11 @@ client.on("ready", async (client) => {
   console.log(`${client.user.tag} est prêt !`);
 });
 client.on("interactionCreate", (interaction) => {
+  if (interaction.isCommand()) {
+    interaction.member.roles.forEach();
+  }
   if (interaction.isModalSubmit()) {
-    interaction.fields.getTextInputValue("");
+    interaction.fields.getTextInputValue("pense").toLowerCase();
   }
   if (interaction.isButton()) {
     if (interaction.customId == "validateEntry") {
